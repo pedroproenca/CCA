@@ -20,7 +20,7 @@ import json
 pasta = os.path.dirname(os.path.abspath(__file__))  
 saida = os.path.join(pasta, 'output.txt')  # Nome do arquivo de saída
 
-# Sets DE IPs
+## Sets DE IPs
 ips_ssl_3_0 = set()
 ips_tls_1_0 = set()
 ips_tls_1_1 = set()
@@ -28,11 +28,11 @@ ips_tls_1_2 = set()
 ips_tls_1_3 = set()
 ips_com_protocolo_1_2_1_3 = set()
 
-# Lista Topo
+## Lista Topo
 tls_topo_1_2 = []
 tls_topo_1_2 = []
 
-##V Vulnerabilidades e Erros
+## Vulnerabilidades e Erros
 ips_fallback_scsv = set()
 ips_hs_failure = set()
 ips_vulneravel_downgrade = set()
