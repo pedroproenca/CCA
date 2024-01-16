@@ -20,7 +20,7 @@ import json
 pasta = os.path.dirname(os.path.abspath(__file__))  
 saida = os.path.join(pasta, 'output.txt')  # Nome do arquivo de saída
 
-## Sets DE IPs
+# Sets DE IPs
 ips_ssl_3_0 = set()
 ips_tls_1_0 = set()
 ips_tls_1_1 = set()
@@ -32,7 +32,7 @@ ips_com_protocolo_1_2_1_3 = set()
 tls_topo_1_2 = []
 tls_topo_1_2 = []
 
-## Vulnerabilidades e Erros
+##V Vulnerabilidades e Erros
 ips_fallback_scsv = set()
 ips_hs_failure = set()
 ips_vulneravel_downgrade = set()
@@ -97,6 +97,7 @@ try:
         ips_vulneraveis_que_nao_estao_em_tls_1_2 = conjunto_vulneraveis.difference(ips_tls_1_2) 
         ips_tls_1_3_mas_com_versoes_abaixo_de_1_2 = set(possivelmente_vulneraveis).intersection(ips_tls_1_3)
         ips_tls_1_2_mas_com_versoes_abaixo_de_1_2 = set(possivelmente_vulneraveis).intersection(ips_tls_1_2)
+        ips_cifras_vuln_1_2_1_3 = ips_com_protocolo_1_2_1_3.intersection(ips_cifras_vuln)
 
         ## Total de sites lidos
         arquivo_saida.write(f"\n\nTotal de domínios de IES portuguesas analisados: {nr_sites}\n\n")
@@ -128,7 +129,9 @@ try:
         ## Sites com erros ou possivelmente vulneraveis
         arquivo_saida.write(f"\nSites com erros e/ou possivelmente vulneraveis:\n\n")
         arquivo_saida.write(f"\tCom cifras inseguras: {len(ips_cifras_vuln)}\n")
-        arquivo_saida.write(f"\t{ips_cifras_vuln}\n\n\n")      
+        arquivo_saida.write(f"\t{ips_cifras_vuln}\n\n\n")    
+        arquivo_saida.write(f"\tCom cifras inseguras e que apenas usam TLS 1.2 e/ou TLS 1.3: {len(ips_cifras_vuln_1_2_1_3)}\n")
+        arquivo_saida.write(f"\t{ips_cifras_vuln_1_2_1_3}\n\n\n")       
         arquivo_saida.write(f"\tCom versões abaixo de TLS 1.2: {len(possivelmente_vulneraveis)}\n")
         arquivo_saida.write(f"\t{possivelmente_vulneraveis}\n\n\n")
         arquivo_saida.write(f"\t\tQue têm TLS 1.3 mas versoes abaixo de 1.2: {len(ips_tls_1_3_mas_com_versoes_abaixo_de_1_2)}\n")
